@@ -135,8 +135,6 @@ Start JBoss EAP 7:
 
 Configure the EAP 7 using management API (CLI):
 
-	$ cd $JBOSS_HOME/bin
-	$ cat << EOT > $SPNEGO_TEST_DIR/cli-commands.txt
 	/subsystem=security/security-domain=host:add(cache-type=default)
 	/subsystem=security/security-domain=host/authentication=classic:add(login-modules=[{"code"=>"Kerberos", "flag"=>"required", "module-options"=>[ ("debug"=>"true"),("storeKey"=>"true"),("refreshKrb5Config"=>"true"),("useKeyTab"=>"true"),("doNotPrompt"=>"true"),("keyTab"=>"/home/jboss/mjbeap7/ch11/kerberos-using-apacheds/http.keytab"),("principal"=>"HTTP/localhost@JBOSS.ORG")]}]) {allow-resource-service-restart=true}
 	
@@ -149,8 +147,7 @@ Configure the EAP 7 using management API (CLI):
 	/system-property=jboss.security.disable.secdomain.option:add(value=true)
 	
 	:reload()
-	EOT
-	$ ./jboss-cli.sh -c --file=$SPNEGO_TEST_DIR/cli-commands.txt
+
 
 You've created `host` and `SPNEGO` security domains now. Also some kerberos authentication related system properties were added.
 
