@@ -6,7 +6,6 @@ A sample Kerberos project using ApacheDS directory service.
 
 You need to have [Maven](http://maven.apache.org/) installed
 
-	$ cd kerberos-using-apacheds
 	$ mvn clean install
 
 ## Run the Kerberos server
@@ -15,20 +14,6 @@ Launch the generated JAR file. You can put LDIF files as the program arguments:
 
 	$ java -jar target/kerberos-using-apacheds.jar test.ldif
 
-You can use property  `${hostname}` in the LDIF file and it will be replaced by the canonical server host name:
-
-	dn: uid=HTTP,ou=Users,dc=jboss,dc=org
-	objectClass: top
-	objectClass: person
-	objectClass: inetOrgPerson
-	objectClass: krb5principal
-	objectClass: krb5kdcentry
-	cn: HTTP
-	sn: Service
-	uid: HTTP
-	userPassword: httppwd
-	krb5PrincipalName: HTTP/${hostname}@JBOSS.ORG
-	krb5KeyVersionNumber: 0 
 
 ### Bind address
 
@@ -70,7 +55,7 @@ In order to use Kerberos authentication, you will need to define a login-module 
 				<module-option name="refreshKrb5Config" value="true"/>
 				<module-option name="useKeyTab" value="true"/>
 				<module-option name="doNotPrompt" value="true"/>
-				<module-option name="keyTab" value="/home/jboss/kerberos-eap7/kerberos-using-apacheds/http.keytab"/>
+				<module-option name="keyTab" value="/home/jboss/mjbeap7/ch11/kerberos-using-apacheds/http.keytab"/>
 				<module-option name="principal" value="HTTP/localhost@JBOSS.ORG"/>
 			</login-module>
 		</authentication>
@@ -81,7 +66,7 @@ The following configuration will now be included in your server's XML file:
 	<security-realm name="ManagementRealm">
 		<server-identities>
 			<kerberos>
-				<keytab principal="HTTP/localhost@JBOSS.ORG" path="/home/jboss/kerberos-eap7/kerberos-using-apacheds/http.keytab" debug="true"/>
+				<keytab principal="HTTP/localhost@JBOSS.ORG" path="/home/jboss/mjbeap7/ch11/kerberos-using-apacheds/http.keytab" debug="true"/>
 			</kerberos>
 		</server-identities>
 	. . .
