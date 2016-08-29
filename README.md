@@ -14,7 +14,6 @@ or you can download [current sources as a zip file](https://github.com/mjbeap7/c
 
 You need to have [Maven](http://maven.apache.org/) installed
 
-	$ cd kerberos-eap7
 	$ mvn clean install 
 
 ## Project modules 
